@@ -6,13 +6,12 @@ from bson.json_util import dumps
 from bson import json_util, ObjectId
 from pandas.io.json import json_normalize
 
-connection=MongoClient("mongodb://vision:<v1s1on>@ds019054.mlab.com:19054/twitterstream")
+#Have usedmlab.com to store the data 
+connection=MongoClient("mongodb://uname:pwd@ds019054.mlab.com:19054/twitterstream")
 
 db=connection.twitterstream
 
 names=db.tweets
-
-
 
 mongo_data = names.find()
 
@@ -37,7 +36,8 @@ for i in sanitized:
 
 # output sentiment
    # print sentiment
-    connection1 = MongoClient("mongodb://vision:<v1s1on>@ds145395.mlab.com:45395/twittersentiment")
+   #Have usedmlab.com to store the data 
+    connection1 = MongoClient("mongodb://uname:pwd@ds145395.mlab.com:45395/twittersentiment")
     db1 = connection1.twittersentiment
     #db.tweets.ensure_index("id", unique=True, dropDups=True)
     db1.sentiment.create_index("id",unique=True)
