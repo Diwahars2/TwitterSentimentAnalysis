@@ -7,9 +7,9 @@ from tweepy import Stream
 import datetime
 
 # The MongoDB connection info. Database name is TwitterStream, and collection name is tweets.
-connection = MongoClient("mongodb://vision:<v1s1on>@ds019054.mlab.com:19054/twitterstream")
+#Have used mlab.com to store the data 
+connection = MongoClient("mongodb://usname:pwd@ds019054.mlab.com:19054/twitterstream")
 db = connection.twitterstream
-#db.tweets.ensure_index("id", unique=True, dropDups=True)
 db.tweets.create_index("id",unique=True)
 collection = db.tweets
 
@@ -20,10 +20,10 @@ keywords = ['$goog', '#election2016', 'US Election']
 language = ['en']
 
 # replace these with your own values to get after creating an app on Twitter's developer portal.
-consumer_key = "CEgRrgzxEr2hYiLkFy7bliWeJ"
-consumer_secret = "61mx6og69FEaYkDCpSZvbTNIu62aVDP1lYyEloVVcSkcv9IivZ"
-access_token="477728311-PabYs8rByK5trP0NoTJAAKk5mfQ7e9E6RJaNcgt9"
-access_token_secret="CmbTyBbfvPELZjijCDVYP1cJH9tlZHpXfeBOFIv4IwxGv"
+consumer_key = ""
+consumer_secret = ""
+access_token=""
+access_token_secret=""
 
 # The below code will get Tweets from the stream and store only the important fields to the database
 class StdOutListener(StreamListener):
@@ -32,7 +32,6 @@ class StdOutListener(StreamListener):
 
         # Load the Tweet into the variable "t"
         t = json.loads(data)
-      #  print t
         # Pull important data from the tweet to store in the database.
         tweet_id = t['id_str']  # The Tweet ID from Twitter in string format
         username = t['user']['screen_name']  # The username of the Tweet author
